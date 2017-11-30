@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off">
+    <Properties>
+         <Property name="loglayout">[%d{yyyy-MM-dd HH:mm:ss.SSS}], %-5p, %t, %c, %m%n</Property>
+    </Properties>
+    
+    <Appenders>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="${loglayout}"/>
+        </Console>
+
+        <RollingFile name="rolling" fileName="./logs/sample.log" filePattern="./logs/sample-%d{yyyy-MM-dd}-%i.zip">
+            <PatternLayout pattern="${loglayout}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="5" compressionLevel="7"/>
+        </RollingFile>        
+    </Appenders>
+    
+    <Loggers>
+        <Logger name="com.example.logging" level="info" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="rolling"/>
+        </Logger>
+        
+        <!-- Root Logger -->
+        <Root level="warn">
+            <AppenderRef ref="stdout" />
+        </Root>
+    
+    </Loggers>
+</Configuration>
