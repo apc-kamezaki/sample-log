@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="off">
     <Properties>
-         <Property name="loglayout">[%d{yyyy-MM-dd HH:mm:ss.SSS}], %-5p, %t, %c, %m%n</Property>
+         <Property name="loglayout">time:%d{yyyy-MM-dd HH:mm:ss.SSS}\tpid:%pid\tlevel:%p\tclass:%c/t%m%n</Property>
     </Properties>
     
     <Appenders>
@@ -9,7 +9,7 @@
             <PatternLayout pattern="${loglayout}"/>
         </Console>
 
-        <RollingFile name="rolling" fileName="./logs/sample.log" filePattern="./logs/sample-%d{yyyy-MM-dd}-%i.zip">
+        <RollingFile name="rolling" fileName="/Users/hitoshi/data/logs/sample.log" filePattern="/Users/hitoshi/data/logs/sample-%d{yyyy-MM-dd}-%i.zip">
             <PatternLayout pattern="${loglayout}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="20 MB" />

@@ -37,7 +37,7 @@ public class App {
                 }
             }
             switch (CommandName.parse(params.get(0))) {
-            case ALARM: {
+            case ALERT: {
                 AlertSendCommand alarmCommand = new AlertSendCommand();
                 alarmCommand.execute(num);
                 break;
@@ -76,7 +76,7 @@ public class App {
     }
     
     public static enum CommandName {
-        ALARM,
+        ALERT,
         MESSAGE,
         UNKNOWN;
         
