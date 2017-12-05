@@ -47,6 +47,11 @@ public class App {
                 messageCommand.execute(num);
                 break;
             }
+            case ERROR: {
+                LogErrorCommand errorCommand = new LogErrorCommand();
+                errorCommand.execute();
+                break;
+            }
             default:
                 showUsage(options);
                 System.exit(9);
@@ -78,6 +83,7 @@ public class App {
     public static enum CommandName {
         ALERT,
         MESSAGE,
+        ERROR,
         UNKNOWN;
         
         public static CommandName parse(String name) {
