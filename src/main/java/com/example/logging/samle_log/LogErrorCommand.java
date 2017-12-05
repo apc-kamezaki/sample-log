@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LogErrorCommand {
-    private Logger logger = LogManager.getLogger(LogErrorCommand.class);
+    private static final Logger mailLogger = LogManager.getLogger(MailLogging.MAIL_LOGGER);
     private static final String SENDER = "error-sender@example.com";
     private static final String RECEIVER = "sample-receiver@long.example.com";
 
@@ -18,6 +18,6 @@ public class LogErrorCommand {
         int magicError = 900 + random.nextInt(100);
         UUID messageId = UUID.randomUUID();
         
-        logger.info(String.format("from:%s\taddrs:[%s]\tmsgId:%s\terror:smtp:%d smagic:%d", SENDER, RECEIVER, messageId, smtpError, magicError));
+        mailLogger.info(String.format("from:%s\taddrs:[%s]\tmsgId:%s\terror:smtp:%d smagic:%d", SENDER, RECEIVER, messageId, smtpError, magicError));
     }
 }

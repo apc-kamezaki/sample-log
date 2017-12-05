@@ -9,7 +9,7 @@
             <PatternLayout pattern="${loglayout}"/>
         </Console>
 
-        <RollingFile name="rolling" fileName="/Users/hitoshi/data/logs/sample.log" filePattern="/Users/hitoshi/data/logs/sample-%d{yyyy-MM-dd}-%i.zip">
+        <RollingFile name="elasticsearch" fileName="/Users/hitoshi/data/logs/sample.log" filePattern="/Users/hitoshi/data/logs/sample-%d{yyyy-MM-dd}-%i.zip">
             <PatternLayout pattern="${loglayout}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="20 MB" />
@@ -22,7 +22,7 @@
     <Loggers>
         <Logger name="com.example.logging" level="info" additivity="false">
             <AppenderRef ref="stdout"/>
-            <AppenderRef ref="rolling"/>
+            <AppenderRef ref="elasticsearch"/>
         </Logger>
         
         <!-- Root Logger -->
