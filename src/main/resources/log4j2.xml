@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="off">
     <Properties>
-         <Property name="loglayout">time:%d{ISO8601}\tpid:%pid\tlevel:%p\tclass:%c/t%m%n</Property>
+         <Property name="loglayout">time:%d{ISO8601}\tpid:%pid\tlevel:%p\tclass:%c\t%m%n</Property>
     </Properties>
     
     <Appenders>

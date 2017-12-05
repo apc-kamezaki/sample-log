@@ -10,7 +10,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class AlertSendCommand {
-    private static final String sender = "sender@example.com";
+    private static final String SENDER = "sender@example.com";
+    private static final String SUBJECT = "緊急連絡：メール連絡";
+    private static final String MESSAGE = "緊急連絡 各位 本日緊急連絡のテストメールが送信されます。送信時間は１５時を予定しております。";
     private static final int BLOCK_SIZE = 99;
     private Logger logger = LogManager.getLogger(AlertSendCommand.class);
     
@@ -36,7 +38,7 @@ public class AlertSendCommand {
         
         StringJoiner joiner = new StringJoiner(",");
         addrList.stream().forEach(joiner::add);
-        String message = String.format("msgId:%s\tfrom:%s\taddrs:%s", UUID.randomUUID(), sender, joiner.toString());
+        String message = String.format("msgId:%s\tfrom:%s\tsubect:%s\tbody:%s\taddrs:%s", UUID.randomUUID(), SENDER, SUBJECT, MESSAGE, joiner.toString());
         
         logger.info(message);
     }
