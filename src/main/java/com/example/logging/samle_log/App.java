@@ -17,6 +17,7 @@ public class App {
     
     public static void main( String[] args ) {
         int num = 1;
+        long startTime = System.currentTimeMillis();
         
         CommandLineParser parser = new DefaultParser();
         Options options = setupOptions();
@@ -54,6 +55,7 @@ public class App {
             }
             default:
                 showUsage(options);
+                logger.error("unknown command name " + params.get(0));
                 System.exit(9);
                 break;
             }            
@@ -63,8 +65,7 @@ public class App {
             System.exit(9);
         }
         
-
-        
+        logger.info(String.format("execute time %d ms", (System.currentTimeMillis() - startTime)));
     }
     
     private static Options setupOptions() {

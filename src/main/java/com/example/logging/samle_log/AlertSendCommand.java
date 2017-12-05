@@ -15,8 +15,10 @@ public class AlertSendCommand {
     private static final String MESSAGE = "緊急連絡 各位 本日緊急連絡のテストメールが送信されます。送信時間は１５時を予定しております。";
     private static final int BLOCK_SIZE = 99;
     private static final Logger mailLogger = LogManager.getLogger(MailLogging.MAIL_LOGGER);
+    private static final Logger debugLogger = LogManager.getLogger(AlertSendCommand.class);
     
     public void execute(int num) {
+        debugLogger.info("AlertSendCommand num " + num);
         if (num < 1)    return;
         
         int blockNum =  (int) Math.ceil(num / (double) BLOCK_SIZE);

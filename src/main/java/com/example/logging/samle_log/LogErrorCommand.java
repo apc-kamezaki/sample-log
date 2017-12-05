@@ -7,11 +7,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class LogErrorCommand {
-    private static final Logger mailLogger = LogManager.getLogger(MailLogging.MAIL_LOGGER);
     private static final String SENDER = "error-sender@example.com";
     private static final String RECEIVER = "sample-receiver@long.example.com";
+    private static final Logger mailLogger = LogManager.getLogger(MailLogging.MAIL_LOGGER);
+    private static final Logger debugLogger = LogManager.getLogger(LogErrorCommand.class);
 
     public void execute() {
+        debugLogger.info("LogErrorCommand");
         Random random = new Random(System.currentTimeMillis());
         
         int smtpError = 400 + random.nextInt(100);
