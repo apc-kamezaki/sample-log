@@ -40,7 +40,7 @@ public class AlertSendCommand {
         
         StringJoiner joiner = new StringJoiner(",");
         addrList.stream().forEach(joiner::add);
-        String message = String.format("msgId:%s\tfrom:%s\tsubect:%s\tbody:%s\taddrs:%s", UUID.randomUUID(), SENDER, SUBJECT, MESSAGE, joiner.toString());
+        String message = String.format("msgId:%s\tfrom:%s\tsubject:%s\tbody:%s\taddrs:%s", UUID.randomUUID(), SENDER, SUBJECT, MESSAGE, joiner.toString());
         
         mailLogger.info(message);
     }
