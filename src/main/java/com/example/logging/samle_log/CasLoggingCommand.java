@@ -17,11 +17,11 @@ public class CasLoggingCommand {
     
     private final Random random = new Random(new Date().getTime());
 
-    public void execute(int num) {
-        IntStream.range(0, num).forEach(this::log);
+    public void execute(int num, LineMode lineMode) {
+        IntStream.range(0, num).forEach(i -> log(i, lineMode));
     }
     
-    private void log(int current) {
+    private void log(int current, LineMode lineMode) {
         String who = String.format("user%04d", current / 10);
         String what;
         AuditEvent action = getEvent(current);
@@ -36,7 +36,17 @@ public class CasLoggingCommand {
         }
         String when = logDateFormat.format(new Date());
         String client = String.format("172.31.200.%d", random.nextInt(255));
-        logger.info(String.format(MULTILINE_FORMAT, who, what, action.toString(), when, client));
+        String msg;
+        switch (lineMode) {
+        case SINGLELINE:
+            msg = String.format(SINGLELINE_FORMAT, when, what, action.toString(), who, client);
+            break;
+        case MULTILINE:
+        default:
+            msg = String.format(MULTILINE_FORMAT, who, what, action.toString(), when, client);
+            break;
+        }
+        logger.info(msg);
         try {
             Thread.sleep(random.nextInt(1435));
         } catch (InterruptedException ignore) {
@@ -45,6 +55,11 @@ public class CasLoggingCommand {
     
     private AuditEvent getEvent(int current) {
         return events[current % events.length];
+    }
+    
+    public enum LineMode {
+        SINGLELINE,
+        MULTILINE
     }
     
     enum AuditEvent {
@@ -63,7 +78,7 @@ public class CasLoggingCommand {
             "ST-78-gWMX1dk3XbI6tOn3F2eg-cas1 for https://www.example.com/login/cas"
     };
             
-    
+    private static final String SINGLELINE_FORMAT = "%s\tCAS\t%s\t%s\t%s\t%s\t192.168.0.108";
     private static final String MULTILINE_FORMAT = 
             "Audit trail record BEGIN\n"
             + "=============================================================\n"

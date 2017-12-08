@@ -53,10 +53,16 @@ public class App {
                 errorCommand.execute();
                 break;
             }
-            case CAS: {
+            case CASS: {
                 CasLoggingCommand casCommand = new CasLoggingCommand();
                 num = num < 50 ? num : 50;
-                casCommand.execute(num);
+                casCommand.execute(num, CasLoggingCommand.LineMode.SINGLELINE);
+                break;
+            }
+            case CASM : {
+                CasLoggingCommand casCommand = new CasLoggingCommand();
+                num = num < 30 ? num : 30;
+                casCommand.execute(num, CasLoggingCommand.LineMode.MULTILINE);
                 break;
             }
             default:
@@ -91,7 +97,8 @@ public class App {
         ALERT,
         MESSAGE,
         ERROR,
-        CAS,
+        CASM,
+        CASS,
         UNKNOWN;
         
         public static CommandName parse(String name) {

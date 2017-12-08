@@ -3,7 +3,7 @@
     <Properties>
          <Property name="loglayout">time:%d{ISO8601}\tpid:%pid\tlevel:%p\tclass:%c\t%m%n</Property>
          <Property name="debugLayout">time:%d{ISO8601} pid:%pid level:%p class:%c msg:%m%n</Property>
-         <Property name="casLayout">%d %p [%c] - %m%n</Property>
+         <Property name="casLayout">%d{ISO8601} %p [%c] - %m%n</Property>
     </Properties>
     
     <Appenders>
