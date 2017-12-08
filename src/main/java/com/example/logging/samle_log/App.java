@@ -53,6 +53,12 @@ public class App {
                 errorCommand.execute();
                 break;
             }
+            case CAS: {
+                CasLoggingCommand casCommand = new CasLoggingCommand();
+                num = num < 50 ? num : 50;
+                casCommand.execute(num);
+                break;
+            }
             default:
                 showUsage(options);
                 logger.error("unknown command name " + params.get(0));
@@ -85,6 +91,7 @@ public class App {
         ALERT,
         MESSAGE,
         ERROR,
+        CAS,
         UNKNOWN;
         
         public static CommandName parse(String name) {

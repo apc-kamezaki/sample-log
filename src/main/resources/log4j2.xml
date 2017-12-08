@@ -3,6 +3,7 @@
     <Properties>
          <Property name="loglayout">time:%d{ISO8601}\tpid:%pid\tlevel:%p\tclass:%c\t%m%n</Property>
          <Property name="debugLayout">time:%d{ISO8601} pid:%pid level:%p class:%c msg:%m%n</Property>
+         <Property name="casLayout">%d %p [%c] - %m%n</Property>
     </Properties>
     
     <Appenders>
@@ -14,6 +15,15 @@
             <PatternLayout pattern="${loglayout}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="1 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+            <DefaultRolloverStrategy max="5" compressionLevel="7"/>
+        </RollingFile>
+        
+        <RollingFile name="casaudit" fileName="/Users/hitoshi/data/logs/cas_audit.log" filePattern="/Users/hitoshi/data/logs/sample-debug-%d{yyyy-MM-dd}-%i.zip">
+            <PatternLayout pattern="${casLayout}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="2 MB" />
                 <TimeBasedTriggeringPolicy />
             </Policies>
             <DefaultRolloverStrategy max="5" compressionLevel="7"/>
@@ -33,6 +43,11 @@
         <Logger name="com.example.logging.sample_log.MailLogging" level="info" additivity="false">
             <AppenderRef ref="stdout"/>
             <AppenderRef ref="elasticsearch"/>
+        </Logger>
+        
+        <Logger name="com.example.logging.samle_log.CasLoggingCommand" level="info" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="casaudit"/>
         </Logger>
         
         <Logger name="com.example.logging" level="info" additivity="false">
