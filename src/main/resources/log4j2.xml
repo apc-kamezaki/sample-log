@@ -20,7 +20,7 @@
             <DefaultRolloverStrategy max="5" compressionLevel="7"/>
         </RollingFile>
         
-        <RollingFile name="casaudit" fileName="/Users/hitoshi/data/logs/cas_audit.log" filePattern="/Users/hitoshi/data/logs/sample-debug-%d{yyyy-MM-dd}-%i.zip">
+        <RollingFile name="casaudit" fileName="/Users/hitoshi/data/logs/cas_audit.log" filePattern="/Users/hitoshi/data/logs/cas_audit-%d{yyyy-MM-dd}-%i.zip">
             <PatternLayout pattern="${casLayout}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="2 MB" />
